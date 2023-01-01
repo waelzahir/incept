@@ -14,11 +14,22 @@ services:
       - wordpress  
   wordpress:
     hostname: wp-container
-    build: requirements/wordpress/
+    build: requirements/wordpress
     networks:
       incept:
     volumes:
       - wp:/var/www/html
+    depends_on:
+      - mariadb
+  mariadb:
+    build: requirements/mariadb
+    hostname: db-container
+    networks:
+      incept:
+    volumes:
+      - wp:/var/www/html
+
+
       
 volumes:
   wp:

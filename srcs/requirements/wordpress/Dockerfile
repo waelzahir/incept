@@ -1,6 +1,6 @@
 FROM debian:buster
 
 RUN apt update && apt install vim bash net-tools php php-fpm  -y
-COPY conf /root/conf
-RUN chmod +x /root/conf/scriptwp.sh
-CMD ["bash", "-c", "/root/conf/scriptwp.sh"]
+COPY tools /root/
+RUN chmod +x /root/scriptwp.sh
+CMD ["bash", "-c", "/root/scriptwp.sh"]
