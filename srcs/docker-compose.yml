@@ -2,6 +2,7 @@ version: "3"
 
 services:
   nginx:
+    hostname: ng-container
     build: requirements/nginx
     ports:
       - 443:443
@@ -12,6 +13,7 @@ services:
     depends_on:
       - wordpress  
   wordpress:
+    hostname: wp-container
     build: requirements/wordpress/
     networks:
       incept:
