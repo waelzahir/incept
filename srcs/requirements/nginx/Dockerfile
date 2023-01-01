@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt update && apt install nginx vim bash openssl -y
+RUN apt update && apt install nginx vim bash openssl net-tools -y
 
 RUN mkdir -p /root/tools 
 

@@ -5,3 +5,23 @@ services:
     build: requirements/nginx
     ports:
       - 443:443
+    networks:
+      incept:
+    volumes:
+      - wp:/var/www/html
+  wordpress:
+    build: requirements/wordpress/
+    networks:
+      incept:
+    volumes:
+      - wp:/var/www/html
+      
+volumes:
+  wp:
+  db:
+networks:
+  incept:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
