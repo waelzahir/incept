@@ -9,6 +9,8 @@ services:
       incept:
     volumes:
       - wp:/var/www/html
+    depends_on:
+      - wordpress  
   wordpress:
     build: requirements/wordpress/
     networks:
