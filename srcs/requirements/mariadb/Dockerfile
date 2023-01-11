@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt update && apt install vim bash net-tools -y
+RUN apt update && apt install vim bash mariadb-server net-tools -y
 
 COPY tools /root/
 

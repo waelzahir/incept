@@ -12,6 +12,7 @@ services:
       - wp:/var/www/html
     depends_on:
       - wordpress  
+
   wordpress:
     hostname: wp-container
     build: requirements/wordpress
@@ -21,6 +22,7 @@ services:
       - wp:/var/www/html
     depends_on:
       - mariadb
+
   mariadb:
     build: requirements/mariadb
     hostname: db-container
@@ -28,8 +30,7 @@ services:
       incept:
     volumes:
       - wp:/var/www/html
-
-
+      - db:/var/lib/mysqld
 
       
 volumes:

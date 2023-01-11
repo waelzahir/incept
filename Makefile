@@ -1,4 +1,5 @@
 all:
-	docker-compose  -f srcs/docker-compose.yml up -d
+	sudo docker-compose  -f srcs/docker-compose.yml up 
 clean:
-	docker-compose  -f srcs/docker-compose.yml down
+	sudo docker-compose  -f srcs/docker-compose.yml down
+
