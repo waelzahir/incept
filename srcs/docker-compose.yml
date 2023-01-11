@@ -22,6 +22,8 @@ services:
       - wp:/var/www/html
     depends_on:
       - mariadb
+    env_file:
+      - .env
 
   mariadb:
     build: requirements/mariadb
@@ -31,6 +33,8 @@ services:
     volumes:
       - wp:/var/www/html
       - db:/var/lib/mysqld
+    env_file:
+      - .env
 
       
 volumes:

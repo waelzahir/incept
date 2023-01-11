@@ -1,5 +1,6 @@
 #! /bin/bash
-echo "<p> wp </p> <p>" >> /var/www/html/index.html 
-ifconfig | grep "inet" >> /var/www/html/index.html 
-echo "</p>" >> /var/www/html/index.html 
+wget https://wordpress.org/latest.tar.gz
+tar -xzvf *tar.gz
+mv wordpress /var/www/html
+rm -rf latest.tar.gz
 $(ls /usr/sbin/php-fpm*) -F -R 
