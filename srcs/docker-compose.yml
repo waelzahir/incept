@@ -1,0 +1,25 @@
+version: "3"
+
+
+services:
+  hello_world:
+    build: mariadb/
+    volumes:
+      - database:/root/
+      - web:/home/
+
+
+
+volumes:
+  database:
+    driver: local
+    driver_opts:
+      type: 'tmpfs'
+      o: 'bind'
+      device: '/home/**/data'
+  web:
+    driver: local
+    driver_opts:
+      type: 'tmpfs'
+      o: 'bind'
+      device: '/home/**/data'
