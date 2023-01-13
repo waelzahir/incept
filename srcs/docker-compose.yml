@@ -2,24 +2,36 @@ version: "3"
 
 
 services:
-  hello_world:
+  mariadb:
     build: mariadb/
     volumes:
-      - database:/root/
-      - web:/home/
+      - db:/var/lib/mysql
+    networks:
+      App:
+        ipv4_address: 10.10.10.2
+    env_file:
+      - .env
 
 
 
 volumes:
-  database:
+  www:
     driver: local
     driver_opts:
-      type: 'tmpfs'
+      type: 'none'
       o: 'bind'
-      device: '/home/**/data'
-  web:
+      device: '/dbdata/www'
+  db:
     driver: local
     driver_opts:
-      type: 'tmpfs'
+      type: 'none'
       o: 'bind'
-      device: '/home/**/data'
+      device: '/dbdata/db'
+
+
+networks:
+  App:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.10.10.0/24"
