@@ -11,7 +11,17 @@ services:
         ipv4_address: 10.10.10.2
     env_file:
       - .env
-
+  wp:
+    build: wordpress
+    volumes:
+    - www:/var/www/html
+    networks:
+      App:
+        ipv4_address: 10.10.10.3
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
 
 
 volumes:
