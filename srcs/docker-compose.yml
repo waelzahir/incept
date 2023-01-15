@@ -2,13 +2,24 @@ version: "3"
 
 
 services:
+  nginx:
+    build: nginx
+    ports:
+      - 443:443
+    volumes:
+      - www:/var/www/html
+    networks:
+      App:
+        ipv4_address: 10.10.10.2
+    depends_on:
+      - wp
   mariadb:
     build: mariadb/
     volumes:
       - db:/var/lib/mysql
     networks:
       App:
-        ipv4_address: 10.10.10.2
+        ipv4_address: 10.10.10.3
     env_file:
       - .env
   wp:
@@ -17,7 +28,7 @@ services:
     - www:/var/www/html
     networks:
       App:
-        ipv4_address: 10.10.10.3
+        ipv4_address: 10.10.10.4
     env_file:
       - .env
     depends_on:
@@ -41,7 +52,7 @@ volumes:
 
 networks:
   App:
+    driver: bridge
     ipam:
-      driver: default
       config:
         - subnet: "10.10.10.0/24"
