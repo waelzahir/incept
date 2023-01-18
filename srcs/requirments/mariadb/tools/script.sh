@@ -1,4 +1,5 @@
 #! /bin/bash
-echo "mariadb :" >> /var/www/html/index.html
-env  >> /var/www/html/index.html
+usermod -a -G mysql mysql
+mkdir -p /var/run/mysqld
+chown -R mysql:mysql /var/run/mysqld/
 mysqld

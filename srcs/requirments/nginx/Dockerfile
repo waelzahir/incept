@@ -1,6 +1,5 @@
 FROM debian:buster
-RUN apt update && apt install apt-utils -y
-RUN apt install nginx vim bash openssl -y
+RUN apt update && apt install nginx vim bash openssl -y
 
 COPY tools/ /root/
 COPY conf/ /etc/nginx/conf.d/
