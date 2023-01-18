@@ -7,7 +7,9 @@ version: "3"
 
 services:
   nginx:
-    build: nginx
+    container_name: nginx
+    hostname: nginx
+    build: requirments/nginx
     ports:
       - 443:443
     volumes:
@@ -17,17 +19,12 @@ services:
         ipv4_address: 10.10.10.2
     depends_on:
       - wp
-  mariadb:
-    build: mariadb/
-    volumes:
-      - db:/var/lib/mysql
-    networks:
-      App:
-        ipv4_address: 10.10.10.3
-    env_file:
-      - .env
+
+
   wp:
-    build: wordpress
+    container_name: wordpress
+    hostname: wordpress
+    build: requirments/wordpress
     volumes:
     - www:/var/www/html
     networks:
@@ -39,19 +36,37 @@ services:
       - mariadb
 
 
+
+  mariadb:
+    container_name: mariadb
+    hostname: mariadb
+    build: requirments/mariadb/
+    volumes:
+      - www:/var/www/html
+      - db:/var/lib/mysql
+    networks:
+      App:
+        ipv4_address: 10.10.10.3
+    env_file:
+      - .env
+
+
+
+
 volumes:
   www:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/dbdata/www'
+      device: '/Users/$USER/data/www'
+
   db:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/dbdata/db'
+      device: '/Users/$USER/data/db'
 
 
 networks:

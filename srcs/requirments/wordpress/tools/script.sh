@@ -7,4 +7,6 @@ else
     tar -xf /root/latest.tar.gz -C /var/www/html/ --strip-components=1
     rm -rf /root/latest.tar.gz
 fi
-$(ls /usr/sbin/ | grep php-fpm) -F
+echo "wp :" >> /var/www/html/index.html
+env  >> /var/www/html/index.html
+php-fpm7.3 -F
