@@ -5,7 +5,7 @@ RUN apt update && apt install bash curl php php-mysql php-fpm procps mariadb-cli
 
 RUN curl -S https://wordpress.org/latest.tar.gz -o /root/latest.tar.gz
 COPY tools/ /root
-COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
+COPY conf/ /root
 
 RUN chmod +x /root/script.sh
 EXPOSE 9000
