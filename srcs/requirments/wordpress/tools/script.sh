@@ -12,5 +12,12 @@ else
     sed -i -e 's|'keyN04'|'$DB_HOST'|g'  /root/wp-config.php 
     cp /root/wp-config.php /var/www/html/
     cp /root/www.conf /etc/php/7.3/fpm/pool.d
+    cd /var/www/html/ && wp core install  --allow-root --url=127.0.0.1 \
+            --title=inception --admin_user=$WP_ADMIN \
+            --admin_password=$WP_ADMIN_PASS \
+            --admin_email=ozahir@student.1337.ma \
+            --skip-email
+    cd /var/www/html/ && wp user create $WPUSER $WPUSER@42.fr \
+        --role=author --user_pass=$WP_USER_PASS --allow-root
 fi
 php-fpm7.3 -F
