@@ -7,8 +7,6 @@ if test -f "/var/lib/mysql/hiddenf.sql"; then
     echo "database already configured"
 else
     envsubst < /root/mysql.conf > /var/lib/mysql/hiddenf.sql
-    service  mysql start
-    mysql -u root < /var/lib/mysql/hiddenf.sql
-    service mysql stop
+    service  mysql start > /dev/null && mysql -u root < /var/lib/mysql/hiddenf.sql && service mysql stop
 fi
-mysqld
+mysqld 
