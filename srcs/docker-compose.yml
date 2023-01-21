@@ -61,14 +61,14 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/$USER/data/www'
+      device: '/home/$USER/data/www'
 
   db:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/Users/$USER/data/db'
+      device: '/home/$USER/data/db'
 
 
 networks:
