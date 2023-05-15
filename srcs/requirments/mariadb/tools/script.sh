@@ -1,0 +1,2 @@
+echo maria
+exec "$@"
