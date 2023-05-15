@@ -1,1 +1,2 @@
-yes hido
+echo works
+exec "$@"
