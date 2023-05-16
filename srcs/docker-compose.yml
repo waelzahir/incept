@@ -1,0 +1,29 @@
+
+
+services:
+  nginx:
+    build: requirments/nginx
+    ports:
+      - 80:80
+    networks:
+      app:
+        ipv4_address: 10.10.10.2
+  mariadb:
+    build: requirments/mariadb
+    networks:
+      app:
+        ipv4_address: 10.10.10.3
+  wordpress:
+    build: requirments/wordpress
+    networks:
+      app:
+        ipv4_address: 10.10.10.4
+
+
+
+networks:
+  app:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.10.10.0/24"
