@@ -25,7 +25,7 @@ services:
       app:
         ipv4_address: 10.10.10.4
     volumes:
-      - WordPress:/home/data
+      - WordPress:/var/www/html
 
 networks:
   app:

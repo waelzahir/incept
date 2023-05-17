@@ -13,4 +13,5 @@ RUN openssl req -x509 -newkey rsa:4096 \
 
 EXPOSE 443
 ENTRYPOINT ["/bin/bash", "root/script.sh"]
+
 CMD ["nginx", "-g", "daemon off;"]
