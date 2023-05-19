@@ -28,6 +28,8 @@ services:
         ipv4_address: 10.10.10.4
     volumes:
       - WordPress:/var/www/html
+    env_file:
+      - .env
 
 networks:
   app:
