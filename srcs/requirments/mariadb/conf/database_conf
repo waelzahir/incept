@@ -1,5 +1,6 @@
-create user 'ouail'@'localhost' identified by 'salam';
-create database wordpress;
-grant all privileges on wordpress.* to 'ouail'@'localhost';
+alter user 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+create user '${MYSQL_USER}'@'${HOST}' identified by '${MYSQL_USER_PASSWORD}';
+create database ${DATABASE};
+grant all privileges on ${DATABASE}.* to '${MYSQL_USER}'@'${HOST}';
 flush privileges ;
 exit

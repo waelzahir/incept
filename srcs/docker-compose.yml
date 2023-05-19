@@ -18,14 +18,16 @@ services:
         ipv4_address: 10.10.10.3
     volumes:
       - DB:/var/lib/mysql
+    env_file:
+      - .env
   
-  # wordpress:
-  #   build: requirments/wordpress
-  #   networks:
-  #     app:
-  #       ipv4_address: 10.10.10.4
-  #   volumes:
-  #     - WordPress:/var/www/html
+  wordpress:
+    build: requirments/wordpress
+    networks:
+      app:
+        ipv4_address: 10.10.10.4
+    volumes:
+      - WordPress:/var/www/html
 
 networks:
   app:
