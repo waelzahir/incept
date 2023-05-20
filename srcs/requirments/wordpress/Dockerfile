@@ -12,6 +12,7 @@ RUN touch /run/php/php7.3-fpm.sock
 RUN wp --allow-root core download --path='/root/wpfiles' --locale=en_US
 
 COPY tools/script.sh /root
+COPY conf/www.conf /root
 RUN chmod +x /root/script.sh
 
 EXPOSE 9000

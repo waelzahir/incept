@@ -1,15 +1,15 @@
 
 
 services:
-  # nginx:
-  #   build: requirments/nginx
-  #   ports:
-  #     - 443:443
-  #   networks:
-  #     app:
-  #       ipv4_address: 10.10.10.2
-  #   volumes:
-  #     - WordPress:/var/www/html
+  nginx:
+    build: requirments/nginx
+    ports:
+      - 443:443
+    networks:
+      app:
+        ipv4_address: 10.10.10.2
+    volumes:
+      - WordPress:/var/www/html
   
   mariadb:
     build: requirments/mariadb
