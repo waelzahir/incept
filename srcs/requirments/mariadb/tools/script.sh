@@ -1,14 +1,9 @@
-
-
-
-
 if [ -d "/var/lib/mysql/wordpress" ] 
 then
-    echo ha
+    echo -n
 else
     service mysql start
     envsubst < /root/database_conf | mysql -u root 
-    mysqladmin -u root -p${MYSQL_ROOT_PASSWORD} shutdown
+    mysqladmin -u root -p${MYSQL_ROOT_PASSWORD} shutdown 
 fi
-
 exec "$@"

@@ -1,16 +1,6 @@
-
+version: "3"
 
 services:
-  nginx:
-    build: requirments/nginx
-    ports:
-      - 443:443
-    networks:
-      app:
-        ipv4_address: 10.10.10.2
-    volumes:
-      - WordPress:/var/www/html
-  
   mariadb:
     build: requirments/mariadb
     networks:
@@ -20,16 +10,41 @@ services:
       - DB:/var/lib/mysql
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD", "mysqladmin","-uroot", "-p${MYSQL_USER_PASSWORD}" ,"ping"]
+  
+  
+  
+  
+  nginx:
+    build: requirments/nginx
+    ports:
+      - 443:443
+    networks:
+      app:
+        ipv4_address: 10.10.10.2
+    volumes:
+      - WordPress:/var/www/html
+    depends_on:
+      - wordpress
+  
+  
+  
   
   wordpress:
     build: requirments/wordpress
     networks:
       app:
         ipv4_address: 10.10.10.4
+    depends_on:
+      mariadb:
+        condition: service_healthy
     volumes:
       - WordPress:/var/www/html
     env_file:
       - .env
+  
+  
 
 networks:
   app:
