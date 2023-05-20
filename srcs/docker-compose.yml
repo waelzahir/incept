@@ -47,6 +47,17 @@ services:
       - .env
     restart: on-failure
   
+  adminer:
+    build: requirments/bonus/adminer
+    ports:
+     - 8080:8080
+    networks:
+      app:
+        ipv4_address: 10.10.10.5
+    volumes:
+      - adminer:/var/www/html
+    depends_on:
+      - nginx
   
 
 networks:
@@ -58,3 +69,4 @@ networks:
 volumes:
   DB:
   WordPress:
+  adminer:
