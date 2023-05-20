@@ -12,6 +12,7 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "mysqladmin","-uroot", "-p${MYSQL_USER_PASSWORD}" ,"ping"]
+    restart: on-failure
   
   
   
@@ -27,6 +28,7 @@ services:
       - WordPress:/var/www/html
     depends_on:
       - wordpress
+    restart: on-failure
   
   
   
@@ -43,6 +45,7 @@ services:
       - WordPress:/var/www/html
     env_file:
       - .env
+    restart: on-failure
   
   
 
