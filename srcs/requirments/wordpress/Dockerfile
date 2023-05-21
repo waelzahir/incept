@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt update
-RUN apt install  php7.3-fpm mariadb-client bash net-tools php-mysql sendmail curl -y
+RUN apt install  php7.3-fpm mariadb-client bash net-tools php-mysql sendmail curl less -y
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp
 
 
