@@ -40,7 +40,7 @@ services:
       app:
         ipv4_address: 10.10.10.4
     depends_on:
-      mariadb:
+      redis:
         condition: service_healthy
     volumes:
       - WordPress:/var/www/html
@@ -59,7 +59,16 @@ services:
       - adminer:/var/www/html
     depends_on:
       - nginx
-  
+  redis:
+    build: requirments/bonus/redis
+    networks:
+      app:
+        ipv4_address: 10.10.10.6
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+    depends_on:
+      mariadb:
+        condition: service_healthy
 
 networks:
   app:
