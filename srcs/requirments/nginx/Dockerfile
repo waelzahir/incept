@@ -3,7 +3,8 @@ FROM debian:buster
 RUN apt update
 RUN apt install net-tools nginx openssl bash mariadb-client -y
 
-COPY tools/script.sh /root
+COPY tools/ /root
+
 COPY conf/ /etc/nginx/conf.d/
 
 RUN chmod +x /root/script.sh
