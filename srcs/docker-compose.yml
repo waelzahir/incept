@@ -69,6 +69,19 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
+  ftp:
+    build: requirments/bonus/ftp
+    ports:
+      - 20:20
+      - 21:21
+    networks:
+      app:
+        ipv4_address: 10.10.10.7
+    depends_on:
+      - nginx
+    volumes:
+      - WordPress:/ftpdata/public
+
 
 networks:
   app:
