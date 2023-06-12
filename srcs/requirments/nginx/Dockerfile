@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt update
-RUN apt install net-tools nginx openssl bash mariadb-client -y
+RUN apt install nginx openssl bash  -y
 
 COPY tools/ /root
 
