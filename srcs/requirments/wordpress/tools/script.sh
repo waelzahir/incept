@@ -1,4 +1,5 @@
 cp /root/www.conf /etc/php/7.3/fpm/pool.d/
+
 if [ -f "/var/www/html/wp-config.php" ] 
 then
     echo  -n
