@@ -1,4 +1,3 @@
-
 home = $$HOME
 home := $(addprefix $(home), /data)
 Volumes =  $(home)/wordpress $(home)/mariadb
@@ -9,14 +8,14 @@ build:
 	@mkdir -p $(Volumes)
 	@docker-compose  -f srcs/docker-compose.yml build
 run:
-	@docker-compose  -f srcs/docker-compose.yml up 
+	@docker-compose  -f srcs/docker-compose.yml up  -d
 
 stop:
 	docker-compose -f srcs/docker-compose.yml down
 clean: stop
-	rm -rf $(Volumes)
-	docker volume rm srcs_wordpress  srcs_mariadb
-	docker container prune -f
-	docker rmi -f srcs-nginx
+	-rm -rf $(Volumes)
+	-docker rmi -f srcs-nginx srcs-mariadb
+	-docker volume rm srcs_wordpress  srcs_mariadb
+	-docker container prune -f
 
 re:  clean build run
