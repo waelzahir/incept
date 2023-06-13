@@ -9,6 +9,10 @@ services:
       - wordpress:/var/www/html/
     ports:
       - 443:443
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
   
   mariadb:
     build: requirments/mariadb
@@ -19,6 +23,20 @@ services:
       - mariadb:/var/lib/mysql
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD", "mysqladmin", "-uroot", "-p$MYSQL_ROOT_PASSWORD", "ping", "--silent"]
+  
+  wordpress:
+    build: requirments/wordpress
+    networks:
+      internal:
+        ipv4_address: 10.10.10.4
+    volumes:
+      - wordpress:/var/www/html/
+    env_file:
+      - .env
+   
+
 
 
 networks:
