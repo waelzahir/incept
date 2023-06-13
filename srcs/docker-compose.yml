@@ -3,15 +3,30 @@ services:
   nginx:
     build: requirments/nginx
     networks:
-      - internal
+      internal:
+        ipv4_address: 10.10.10.2
     volumes:
       - wordpress:/var/www/html/
     ports:
       - 443:443
+  
+  mariadb:
+    build: requirments/mariadb
+    networks:
+      internal:
+        ipv4_address: 10.10.10.3
+    volumes:
+      - mariadb:/var/lib/mysql
+    env_file:
+      - .env
 
 
 networks:
   internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.10.10.0/24"
 
 volumes:
   wordpress:

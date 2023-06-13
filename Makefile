@@ -15,7 +15,7 @@ stop:
 	docker-compose -f srcs/docker-compose.yml down
 clean: stop
 	rm -rf $(Volumes)
-	docker volume rm srcs_wordpress 
+	docker volume rm srcs_wordpress  srcs_mariadb
 	docker container prune -f
 	docker rmi -f srcs-nginx
 
