@@ -4,6 +4,10 @@ services:
     build: requirments/nginx
     networks:
       - internal
+    volumes:
+      - wordpress:/var/www/html/
+    ports:
+      - 443:443
 
 
 networks:
@@ -15,4 +19,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: "~/data/wordpress"
+      device: "$HOME/data/wordpress"
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "$HOME/data/mariadb"
