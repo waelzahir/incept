@@ -1,0 +1,18 @@
+
+services:
+  nginx:
+    build: requirments/nginx
+    networks:
+      - internal
+
+
+networks:
+  internal:
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "~/data/wordpress"
