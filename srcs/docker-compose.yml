@@ -62,6 +62,14 @@ services:
       mariadb:
         condition: service_healthy
     restart: always
+  static:
+    build: requirments/bonus/static
+    networks:
+      internal:
+        ipv4_address: 10.10.10.12
+    ports:
+      - 80:80
+    restart: always
 
     
     

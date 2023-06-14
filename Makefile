@@ -1,6 +1,6 @@
 home = $$HOME
 home := $(addprefix $(home), /data)
-Volumes =  $(home)/wordpress $(home)/mariadb $(home)/adminer
+Volumes =  $(home)/wordpress $(home)/mariadb 
 
 all:
 	echo "to build: make build\nto run: make run\nto stop: make stop\nto clean: make clean"
