@@ -8,10 +8,11 @@ services:
     volumes:
       - wordpress:/var/www/html/
     ports:
-      - 80:80
+      - 443:443
     depends_on:
       mariadb:
         condition: service_healthy
+    restart: always
 
   
   mariadb:
@@ -25,6 +26,7 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "mysqladmin", "-uroot", "-p$MYSQL_ROOT_PASSWORD", "ping", "--silent"]
+    restart: always
   
   wordpress:
     build: requirments/wordpress
@@ -38,7 +40,32 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
-   
+    restart: always
+  
+  
+  redis:
+    build: requirments/bonus/redis
+    networks:
+      internal:
+        ipv4_address: 10.10.10.10
+    depends_on:
+      - wordpress
+    restart: always
+  adminer:
+    build: requirments/bonus/adminer
+    networks:
+      internal:
+        ipv4_address: 10.10.10.11
+    ports:
+      - 8000:8000
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    restart: always
+
+    
+    
+
 
 
 
