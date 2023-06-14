@@ -3,7 +3,7 @@ from debian:buster
 run groupadd -r mysql && useradd -r -g mysql mysql
 
 run apt update
-run apt -y install  bash mariadb-server  gettext-base procps
+run apt -y install  bash mariadb-server  gettext-base procps expect
 
 copy tools/entry.sh /
 copy conf/conf.sql /root
