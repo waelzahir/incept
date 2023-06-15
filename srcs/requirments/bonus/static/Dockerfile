@@ -1,7 +1,7 @@
 from debian:buster
 
 run apt update
-run apt -y install  php
+run apt -y install  php bash
 
 copy tools/entry.sh /
 copy conf/index.html /var/www/html/

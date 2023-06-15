@@ -1,2 +1,1 @@
-echo nginx
 exec "$@"

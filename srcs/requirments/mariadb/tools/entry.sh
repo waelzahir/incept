@@ -22,7 +22,6 @@ then
     send \"y\r\"
     expect eof
     ")
-    echo $SECURE_MYSQL
     cat /root/conf.sql | envsubst | mysql -u root
     mysqladmin -u root -p${MYSQL_ROOT_PASSWORD} shutdown 
 

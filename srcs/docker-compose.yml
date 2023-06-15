@@ -1,3 +1,4 @@
+version: "3"
 
 services:
   nginx:
@@ -14,7 +15,6 @@ services:
         condition: service_healthy
     restart: always
 
-  
   mariadb:
     build: requirments/mariadb
     networks:
@@ -51,6 +51,7 @@ services:
     depends_on:
       - wordpress
     restart: always
+  
   adminer:
     build: requirments/bonus/adminer
     networks:
@@ -62,6 +63,7 @@ services:
       mariadb:
         condition: service_healthy
     restart: always
+  
   static:
     build: requirments/bonus/static
     networks:
@@ -70,6 +72,17 @@ services:
     ports:
       - 80:80
     restart: always
+  backup:
+    build: requirments/bonus/backup
+    restart: always
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - mariadb:/database
+      - backup:/data
+
+
 
     
     
@@ -97,3 +110,9 @@ volumes:
       type: none
       o: bind
       device: "$HOME/data/mariadb"
+  backup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "$HOME/data/backup"
